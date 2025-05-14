@@ -1,4 +1,5 @@
 const songs = [
+  "./assets/music/nigger.mp3",
   "./assets/music/music.mp3",
   "./assets/music/music2.mp3",
   "./assets/music/music3.mp3",
