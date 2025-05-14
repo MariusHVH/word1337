@@ -32,6 +32,24 @@
         white-space: nowrap;
         overflow: hidden;
       }
+/
+      #corner-counter {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 5px;
+        font-family: monospace;
+        z-index: 1000;
+      }
+
+      .top-gif {
+        opacity: 0.7; 
+        width: 200px; 
+        margin-bottom: 10px;
+      }
     </style>
   </head>
   <body>
@@ -43,6 +61,8 @@
     </div>
     <div id="hiddencontainer">
       <div class="terminal" id="terminal">
+
+        <img id="gif" src="assets/img/fluttershy.gif" alt="Fluttershy animated gif" loading="lazy" />       
         <div>JS GRABBED UR SHIT NIGGAAAAA</div>
         <div>Welcome To word1337</div>
         <div>follow https://www.roblox.com/users/6167730025/profile</div>
@@ -59,5 +79,41 @@
         <div>------- END --------</div>
       </div>
     </div>
+
+
+    <div id="corner-counter">Visits: Loading...</div>
+
+
+    <script>
+
+      async function updateVisitCounter() {
+        const counterElement = document.getElementById('corner-counter');
+        
+        try {
+
+          if (!sessionStorage.getItem('counted')) {
+
+            const response = await fetch('/api/visits', {
+              method: 'POST'
+            });
+            
+            if (response.ok) {
+              sessionStorage.setItem('counted', 'true');
+            }
+          }
+          
+
+          const countResponse = await fetch('/api/visits');
+          const data = await countResponse.json();
+          counterElement.textContent = `Visits: ${data.count}`;
+        } catch (error) {
+          console.error('Error updating visit counter:', error);
+          counterElement.textContent = 'Visits: 1337';
+        }
+      }
+      
+
+      document.addEventListener('DOMContentLoaded', updateVisitCounter);
+    </script>
   </body>
 </html>
